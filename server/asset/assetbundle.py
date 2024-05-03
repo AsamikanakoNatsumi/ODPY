@@ -50,7 +50,7 @@ def getFile(assetsHash, fileName):
                 return redirect('https://ark-us-static-online.yo-star.com/assetbundle/official/Android/assets/{}/{}'.format(version, fileName), 302)
 
     if not os.path.isdir(basePath):
-        os.makedirs(basePath)
+        os.makedirs(basePath, exist_ok=True)
     filePath = os.path.join(basePath, fileName)
 
     wrongSize = False
@@ -129,7 +129,7 @@ def export(url, basePath, fileName, filePath, assetsHash, redownload = False):
         savePath = cachePath + 'hot_update_list.json'
 
         if not os.path.isdir(cachePath):
-            os.makedirs(cachePath)
+            os.makedirs(cachePath, exist_ok=True)
         write_json(hot_update_list, savePath)
 
         return send_file('../assets/cache/hot_update_list.json')
