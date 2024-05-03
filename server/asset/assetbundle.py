@@ -56,6 +56,8 @@ def getFile(assetsHash, fileName):
     wrongSize = False
     if not os.path.basename(fileName) == 'hot_update_list.json':
         temp_hot_update_path = os.path.join(basePath, "hot_update_list.json")
+        if not os.path.exists(temp_hot_update_path):
+            getFile(assetsHash, "hot_update_list.json")
         hot_update = read_json(temp_hot_update_path)
         if os.path.exists(filePath):
             for pack in hot_update["packInfos"]:
